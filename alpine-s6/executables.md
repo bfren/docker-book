@@ -464,10 +464,6 @@ Executing busybox-1.33.1-r3.trigger
 OK: 9 MiB in 17 packages
 [bf] 2021-09-19 18:00:00 | bf-tz: Setting timezone to UTC...
 [bf] 2021-09-19 17:00:00 | bf-tz: Removing tzdata packages.
-WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
-WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
-WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/edge/main: No such file or directory
-WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/edge/community: No such file or directory
 (1/2) Purging .tz (20210923.092854)
 (2/2) Purging tzdata (2021a-r0)
 Executing busybox-1.33.1-r3.trigger
