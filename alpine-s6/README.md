@@ -15,6 +15,19 @@ description: >-
 
 The [S6 Overlay](https://github.com/just-containers/s6-overlay) is a version of the S6 supervisor which has various useful features for containers and managing services.
 
+## Tags
+
+_x.x and x.x.x refer to the bfren image versions._
+
+| Alpine Version | Tags |
+| :--- | :--- |
+| 3.12 | alpine3.12, alpine3.12.8, alpine 3.12-x.x, alpine3.12-x.x.x |
+| 3.13 | alpine3.13, alpine3.13.6, alpine 3.13-x.x, alpine3.13-x.x.x |
+| 3.14 | latest, alpine3, alpine3.14, alpine3.14.2, alpine3.14-x.x, alpine3.14-x.x.x |
+| edge | alpineedge, alpineedge-x.x, alpineedge-x.x.x |
+
+In addition, you can add `-dev` and `-beta` suffixes to access development / test builds \(see Docker Hub for further details\).
+
 ## Environment Variables
 
 | Name | Values | Description | Default |
@@ -46,7 +59,11 @@ The sequence is as follows \(all should be contained within the `/overlay/` dire
 2. `/etc/cont-init.d/` - run initialisation scripts
 3. `/etc/services.d/` - register the services you want to be supervised
 
-The S6 Overlay does more before and after all this - additional information can be found in their documentation. These three folders are where you will most often hook into the container processes.
+{% hint style="info" %}
+My rule of thumb is that the first image uses 0-based files. Then the next uses 1-based files, then 2-based, etc. As S6 loads these files alphabetically, this practice ensures base permissions and configuration is always done first.
+{% endhint %}
+
+The S6 Overlay does more before and after all this - additional information can be found in [their documentation](http://www.skarnet.org/software/s6/). These three folders are where you will most often hook into the container processes.
 
 ### Permissions
 
@@ -65,20 +82,19 @@ For me, permissions are one the most powerful and most frustrating features of L
 * Then we have the owner of the file or directory
 * Finally we have the permissions, first `fmode` \(file permissions\) and then `dmode` \(directory permissions\).  I find the [chmod calculator](https://chmod-calculator.com) extremely useful for generating these.
 
-You can have as many of these as you wish - I suggest grouping them by directory or type rather than having one big file full of them.
+You can have as many of these as you wish, and you can reapply them at any point by using [bf-fix-attrs](executables.md#bf-fix-attrs).
 
 ### Initialisation
 
 After the permissions are set, the scripts in `/etc/cont-init.d/` are run. Here you might want to run installation routines, create configuration files, etc.
 
-For example, in the [ClamAV](../base-images/clamav.md) image the following two scripts run in this stage:
+For example, in the [ClamAV](../base-images/clamav.md) image the following two scripts run in this stage:/etc/cont-init.d/10-initial \# downloads the latest virus definitions
 
 ```bash
-/etc/cont-init.d/10-initial # downloads the latest virus definitions
 /etc/cont-inid.d/11-updater # registers the freshclam update daemon
 ```
 
-Notice that in this example the files begin `10-` and `11-`. My rule of thumb is that the first image uses 0-based files. Then the next uses 1-based files, then 2-based, etc. This allows you to ensure that the base permissions and configuration is done first.
+Notice that in this example the files begin `10-` and `11-` as mentioned earlier. 
 
 \(It does mean there can't be more than ten initialisation scripts per image, but frankly if there are more we need to ask the question, is the image trying to do too much? A key principle of Docker is that an image should do one thing.\)
 
@@ -93,7 +109,7 @@ Here is the `run` file from the `cron` service of this image:
 /usr/sbin/crond -f
 ```
 
-As you can see, it does have to be complex! The trick with this particular example is the `-f` flag which tells the cron daemon to run in the foreground. If it ran in the background, S6 wouldn't be able to supervise it.
+As you can see, it doesn't have to be complex! The trick with this particular example is the `-f` flag which tells the cron daemon to run in the foreground. If it ran in the background, S6 wouldn't be able to supervise it.  This is something to watch out for when creating your own services.
 
 You can have as many services as you want - however the main point of Docker is to separate services into their own 'contained' environments. Therefore I try to keep the discipline of one 'main' service, and only adding 'supporting' services beyond that.
 
@@ -127,7 +143,7 @@ You do not get Docker's environment variables in scripts by default however, so 
 
 ## Cron
 
-This image contains only one service: `cron`. If you want to add scripts or executables to the cron you have two options.
+This image contains only one service: `cron`, which is enabled by default.  If you want to add scripts or executables to the cron you have two options.
 
 ### Option 1: `/etc/periodic/`
 
@@ -135,7 +151,7 @@ The simplest way to add tasks to the cron in Alpine Linux is to place an executa
 
 ```bash
 $ ls /etc/periodic/
-15min    daily    hourly    monthly    weekly
+1min    15min    daily    hourly    monthly    weekly
 ```
 
 It's pretty obvious how frequently they run! An example of this method can be found in the [Nginx PHP](../base-images/nginx-php/) image.
@@ -151,7 +167,7 @@ $ head -n 1 /etc/crontabs/root
 
 However, if you do this, remember you will be overriding the default file when your `/overlay/` is copied over the image files, so you need to include the [default directives](https://github.com/bfren/docker-alpine-s6/blob/main/overlay/etc/crontabs/root) if you don't want to break the cron further down the line.
 
-## Templating
+## Templating with esh
 
 The image comes pre-installed with [esh](https://github.com/jirutka/esh), a simple shell-based templating engine.  It is extremely lightweight, and very easy to use.
 
