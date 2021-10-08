@@ -15,6 +15,8 @@ description: >-
 
 The [S6 Overlay](https://github.com/just-containers/s6-overlay) is a version of the S6 supervisor which has various useful features for containers and managing services.
 
+[esh](https://github.com/jirutka/esh) is a lightweight templating engine using POSIX-compatible syntax.
+
 ## Tags
 
 _x.x and x.x.x refer to the bfren image versions._
