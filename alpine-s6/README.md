@@ -6,8 +6,8 @@ description: >-
 
 # Alpine S6
 
-[Source files](https://github.com/bfren/docker-alpine-s6) \(GitHub\)  
-[Container images](https://hub.docker.com/r/bfren/alpine-s6) \(Docker Hub\)
+[Source files](https://github.com/bfren/docker-alpine-s6) (GitHub)\
+[Container images](https://hub.docker.com/r/bfren/alpine-s6) (Docker Hub)
 
 ## Acknowledgements
 
@@ -21,25 +21,26 @@ The [S6 Overlay](https://github.com/just-containers/s6-overlay) is a version of 
 
 _x.x and x.x.x refer to the bfren image versions._
 
-| Alpine Version | Tags |
-| :--- | :--- |
-| 3.12 | alpine3.12, alpine3.12.8, alpine 3.12-x.x, alpine3.12-x.x.x |
-| 3.13 | alpine3.13, alpine3.13.6, alpine 3.13-x.x, alpine3.13-x.x.x |
-| 3.14 | latest, alpine3, alpine3.14, alpine3.14.2, alpine3.14-x.x, alpine3.14-x.x.x |
-| edge | alpineedge, alpineedge-x.x, alpineedge-x.x.x |
+| Alpine Version | Tags                                                                        |
+| -------------- | --------------------------------------------------------------------------- |
+| 3.12           | alpine3.12, alpine3.12.8, alpine 3.12-x.x, alpine3.12-x.x.x                 |
+| 3.13           | alpine3.13, alpine3.13.6, alpine 3.13-x.x, alpine3.13-x.x.x                 |
+| 3.14           | latest, alpine3, alpine3.14, alpine3.14.2, alpine3.14-x.x, alpine3.14-x.x.x |
+| edge           | alpineedge, alpineedge-x.x, alpineedge-x.x.x                                |
 
-In addition, you can add `-dev` and `-beta` suffixes to access development / test builds \(see Docker Hub for further details\).
+In addition, you can add `-dev` and `-beta` suffixes to access development / test builds (see Docker Hub for further details).
 
 ## Environment Variables
 
-| Name | Values | Description | Default |
-| :--- | :--- | :--- | :--- |
-| `BF_CRON_LOG_LEVEL` | 0-8 | Sets the cron log level \(0 is the most verbose\). | 8 |
-| `BF_DEBUG` | 0 or 1 | Set to 0 to disable debug log output messages. | 1 |
+| Name                | Values | Description                                                          | Default |
+| ------------------- | ------ | -------------------------------------------------------------------- | ------- |
+| `BF_CRON_LOG_LEVEL` | 0-8    | Sets the cron log level (0 is the most verbose).                     | 8       |
+| `BF_DEBUG`          | 0 or 1 | Set to 0 to disable debug log output messages.                       | 1       |
+| `BF_APK_VERIFY`     | 0 or 1 | Runs `fix` and `verify` to avoid `apk` warnings later down the line. | 0       |
 
 ## Packages
 
-The image comes with the S6 Overlay and all its dependencies. If you need to build it with a different timezone to the default \("Europe/London"\), you can do so by setting the `TZ` ARG, or by installing the `tzdata` package.  \(Please note this is only possible if you are building the image yourself - otherwise you will need to use [bf-tz](executables.md#bf-tz).\)
+The image comes with the S6 Overlay and all its dependencies. If you need to build it with a different timezone to the default ("Europe/London"), you can do so by setting the `TZ` ARG, or by installing the `tzdata` package.  (Please note this is only possible if you are building the image yourself - otherwise you will need to use [bf-tz](executables.md#bf-tz).)
 
 As well as the standard repositories, the edge repos are tagged with `@edgemain` and `@edgecomm`. This means you can, for example, do `apk add curl@edgemain` or `apk add php8@edgecomm` to add the edge versions of packages.
 
@@ -55,7 +56,7 @@ You can add any files you want to the image this way.
 
 Every time the container starts, the S6 Overlay runs the same series of scripts. These allow you to ensure that there is a consistent environment for your service.
 
-The sequence is as follows \(all should be contained within the `/overlay/` directory\):
+The sequence is as follows (all should be contained within the `/overlay/` directory):
 
 1. `/etc/fix-attrs.d/` - set required permissions
 2. `/etc/cont-init.d/` - run initialisation scripts
@@ -80,9 +81,9 @@ For me, permissions are one the most powerful and most frustrating features of L
 ```
 
 * First we have the absolute path to the file or directory to set permissions for
-* Next we have `true` or `false` whether or not to recurse \(obviously meaningless for a file\)
+* Next we have `true` or `false` whether or not to recurse (obviously meaningless for a file)
 * Then we have the owner of the file or directory
-* Finally we have the permissions, first `fmode` \(file permissions\) and then `dmode` \(directory permissions\).  I find the [chmod calculator](https://chmod-calculator.com) extremely useful for generating these.
+* Finally we have the permissions, first `fmode` (file permissions) and then `dmode` (directory permissions).  I find the [chmod calculator](https://chmod-calculator.com) extremely useful for generating these.
 
 You can have as many of these as you wish, and you can reapply them at any point by using [bf-fix-attrs](executables.md#bf-fix-attrs).
 
@@ -90,15 +91,15 @@ You can have as many of these as you wish, and you can reapply them at any point
 
 After the permissions are set, the scripts in `/etc/cont-init.d/` are run. Here you might want to run installation routines, create configuration files, etc.
 
-For example, in the [ClamAV](../base-images/clamav.md) image the following two scripts run in this stage:/etc/cont-init.d/10-initial \# downloads the latest virus definitions
+For example, in the [ClamAV](../base-images/clamav.md) image the following two scripts run in this stage:/etc/cont-init.d/10-initial # downloads the latest virus definitions
 
 ```bash
 /etc/cont-inid.d/11-updater # registers the freshclam update daemon
 ```
 
-Notice that in this example the files begin `10-` and `11-` as mentioned earlier. 
+Notice that in this example the files begin `10-` and `11-` as mentioned earlier.&#x20;
 
-\(It does mean there can't be more than ten initialisation scripts per image, but frankly if there are more we need to ask the question, is the image trying to do too much? A key principle of Docker is that an image should do one thing.\)
+(It does mean there can't be more than ten initialisation scripts per image, but frankly if there are more we need to ask the question, is the image trying to do too much? A key principle of Docker is that an image should do one thing.)
 
 ### Services
 
@@ -139,9 +140,9 @@ One of the most useful tricks when using S6 is to make use of the following dire
 freshclam -d -c ${FRESHCLAM_PER_DAY}
 ```
 
-This is an example from the [ClamAV](../base-images/clamav.md) image \(in fact it is the contents of the `11-updater` file we looked at earlier\). One of that image's environment variables is `FRESHCLAM_PER_DAY` which allows you to define how many times a day you want `freshclam` to run.
+This is an example from the [ClamAV](../base-images/clamav.md) image (in fact it is the contents of the `11-updater` file we looked at earlier). One of that image's environment variables is `FRESHCLAM_PER_DAY` which allows you to define how many times a day you want `freshclam` to run.
 
-You do not get Docker's environment variables in scripts by default however, so you need to use the S6 helper function `with-contenv` \(with container environment\). Then you can access all the environment variables you want.
+You do not get Docker's environment variables in scripts by default however, so you need to use the S6 helper function `with-contenv` (with container environment). Then you can access all the environment variables you want.
 
 ## Cron
 
@@ -149,7 +150,7 @@ This image contains only one service: `cron`, which is enabled by default.  If y
 
 ### Option 1: `/etc/periodic/`
 
-The simplest way to add tasks to the cron in Alpine Linux is to place an executable file in one of the directories under `/etc/periodic/` \(remember to set the executable attribute in `/etc/fix-attrs.d/`\):
+The simplest way to add tasks to the cron in Alpine Linux is to place an executable file in one of the directories under `/etc/periodic/` (remember to set the executable attribute in `/etc/fix-attrs.d/`):
 
 ```bash
 $ ls /etc/periodic/
@@ -178,4 +179,3 @@ All dynamic configuration files in the bfren ecosystem are built using esh, and 
 ## Have fun!
 
 And that's it! There isn't much more to it - if you want to dive deeper into S6 then I suggest you read their documentation.
-
