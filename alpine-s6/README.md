@@ -34,9 +34,9 @@ In addition, you can add `-dev` and `-beta` suffixes to access development / tes
 
 | Name                | Values | Description                                                          | Default |
 | ------------------- | ------ | -------------------------------------------------------------------- | ------- |
+| `BF_APK_VERIFY`     | 0 or 1 | Runs `fix` and `verify` to avoid `apk` warnings later down the line. | 0       |
 | `BF_CRON_LOG_LEVEL` | 0-8    | Sets the cron log level (0 is the most verbose).                     | 8       |
 | `BF_DEBUG`          | 0 or 1 | Set to 0 to disable debug log output messages.                       | 1       |
-| `BF_APK_VERIFY`     | 0 or 1 | Runs `fix` and `verify` to avoid `apk` warnings later down the line. | 0       |
 
 ## Packages
 
