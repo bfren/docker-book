@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Home](README.md)
+* [Alpine](alpine/README.md)
+  * [Alpine: Executables](alpine/alpine-executables.md)
 * [Alpine S6](alpine-s6/README.md)
   * [Alpine S6: Executables](alpine-s6/executables.md)
 
@@ -28,4 +30,3 @@
 * [FreeScout](applications/freescout.md)
 * [FreshRSS](applications/freshrss.md)
 * [WordPress](applications/wordpress.md)
-
