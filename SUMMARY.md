@@ -23,6 +23,9 @@
 * [Nginx Proxy](base-images/nginx-proxy/README.md)
   * [Scripts and Executables](base-images/nginx-proxy/scripts-and-executables.md)
 * [Nginx WebDAV](base-images/nginx-webdav.md)
+* [PHP](base-images/php.md)
+* [PostgreSQL](base-images/postgresql/README.md)
+  * [Scripts and Executables](base-images/postgresql/scripts-and-executables.md)
 * [Redis](base-images/redis.md)
 
 ## Applications
