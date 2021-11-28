@@ -242,6 +242,18 @@ $ bf-esh /path/to/template /path/to/output
 [bf] 2021-09-19 18:00:00 | bf-esh: /path/to/output created.
 ```
 
+### bf-image
+
+Display name and version of the current image, and a link to the GitHub repository.
+
+#### Usage
+
+```
+$ bf-image
+[bf] 2021-09-19 18:00:00 | bf-image: bfren alpine 1.2.0.
+[bf] 2021-09-19 18:00:00 | bf-image: https://github.com/bfren/docker-alpine.
+```
+
 ### bf-install
 
 Run install `/tmp/install` and then perform cleanup (see [bf-clear](alpine-executables.md#bf-clear)). Within the ecosystem this would normally be used in a `Dockerfile`
