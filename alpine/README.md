@@ -23,8 +23,8 @@ _x.x and x.x.x refer to the bfren image versions._
 | -------------- | --------------------------------------------------------------------------- |
 | 3.12           | alpine3.12, alpine3.12.9, alpine3.12-x.x, alpine3.12-x.x.x                  |
 | 3.13           | alpine3.13, alpine3.13.7, alpine 3.13-x.x, alpine3.13-x.x.x                 |
-| 3.14           | latest, alpine3, alpine3.14, alpine3.14.3, alpine3.14-x.x, alpine3.14-x.x.x |
-| 3.15           | alpine3.15, alpine3.15.0, alpine3.15-x.x, alpine3.15-x.x.x                  |
+| 3.14           | alpine3.14, alpine3.14.3, alpine3.14-x.x, alpine3.14-x.x.x                  |
+| 3.15           | latest, alpine3, alpine3.15, alpine3.15.0, alpine3.15-x.x, alpine3.15-x.x.x |
 | edge           | alpineedge, alpineedge-x.x, alpineedge-x.x.x                                |
 
 In addition, you can add `-dev` and `-beta` suffixes to access development / test builds (see Docker Hub for further details).
@@ -72,4 +72,3 @@ However, if you do this, remember you will be overriding the default file when y
 The image comes pre-installed with [esh](https://github.com/jirutka/esh), a simple shell-based templating engine. It is extremely lightweight, and very easy to use.
 
 All dynamic configuration files in the bfren ecosystem are built using esh, and the default location for those templates is `/etc/bf/templates`.
-
