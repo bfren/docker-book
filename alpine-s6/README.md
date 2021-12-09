@@ -1,7 +1,7 @@
 ---
 description: >-
   The base image for much of the bfren ecosystem, containing Alpine Linux
-  installed with the S6 Overlay
+  installed with the S6 Overlay.
 ---
 
 # Alpine S6
