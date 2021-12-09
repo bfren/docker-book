@@ -15,9 +15,9 @@ The [S6 Overlay](https://github.com/just-containers/s6-overlay) is a version of 
 
 ## Environment Variables
 
-| Name                | Values | Description                                      | Default |
-| ------------------- | ------ | ------------------------------------------------ | ------- |
-| `BF_CRON_LOG_LEVEL` | 0-8    | Sets the cron log level (0 is the most verbose). | 8       |
+| Name                | Values | Description                         | Default |
+| ------------------- | ------ | ----------------------------------- | ------- |
+| `BF_CRON_LOG_LEVEL` | 0-8    | Cron log level (0 is most verbose). | 8       |
 
 ## Packages
 
