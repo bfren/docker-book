@@ -55,6 +55,26 @@ $ bf-clear-src
 [bf] 2021-09-19 18:00:00 | bf-clear-src: done.
 ```
 
+### bf-cron
+
+Run all scripts within a cron directory.
+
+#### Arguments
+
+* \-h Show usage
+* \-q Run quietly (otherwise it will output that the cron is being run to the logs - individual scripts may still send output)
+* DIRECTORY - the directory within `/etc/periodic` to run
+
+#### Usage
+
+```
+$ bf-cron 1min
+[bf] 2021-09-19 18:00:00 | bf-cron: /etc/periodic/1min.
+
+$ bf-cron -q 1min
+// scripts are run with no output
+```
+
 ### bf-env
 
 Adds a container environment variable called `$1` with value `$2`.
