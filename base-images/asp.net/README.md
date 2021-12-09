@@ -11,6 +11,16 @@ description: .NET and ASP.NET runtimes pre-installed (versions 3.1, 5.0, and 6.0
 
 Comes pre-installed with the [ASP.NET runtime](https://dotnet.microsoft.com) and all required dependencies.
 
+## Tags
+
+| .NET Version | Tags                           |
+| ------------ | ------------------------------ |
+| 3.1          | net3, net3.1, net3.1.21        |
+| 5.0          | net5, net5.0, net5.0.12        |
+| 6.0          | latest, net6, net6.0, net6.0.0 |
+
+In addition, you can add `-dev` and `-beta` suffixes to access development / test builds (see Docker Hub for further details).
+
 ## Ports
 
 | Port   | Description                                |
