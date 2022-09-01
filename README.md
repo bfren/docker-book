@@ -11,4 +11,4 @@ The instructions assume a working knowledge of shell programming, Docker, and Do
 ## Licence
 
 [MIT](https://mit.bfren.dev/2020) (unless otherwise stated).\
-**Copyright** (c) 2020-2021 bfren (unless otherwise stated).
+**Copyright** (c) 2020-2022 bfren (unless otherwise stated).
