@@ -7,6 +7,8 @@
   * [Alpine S6: Executables](alpine-s6/executables.md)
 * [Debian](alpine-1/README.md)
   * [Debian: Executables](alpine-1/alpine-executables.md)
+* [Debian S6](alpine-s6-1/README.md)
+  * [Debian S6: Executables](alpine-s6-1/executables.md)
 
 ## Base Images
 
