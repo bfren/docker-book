@@ -263,7 +263,7 @@ Run install `/tmp/install` and then perform cleanup (see [bf-clear](alpine-execu
 _This is the basic structure of Dockerfiles based on the Alpine S6 image, copying overlay and then running the standard installation._
 
 ```
-FROM bfren/alpine-s6:alpine3.14
+FROM quay.io/bfren/alpine-s6:alpine3.14
 
 COPY ./overlay /
 
